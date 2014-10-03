@@ -30,6 +30,9 @@ gem 'therubyracer'
 gem 'kaminari'
 gem 'http_accept_language'
 
+gem 'haml-rails'
+gem 'erb2haml'
+
 group :development, :test do
   gem 'spring'
   gem 'guard'
