@@ -13,3 +13,9 @@
  *
  *= require_self
  */
+/* Readable
+ * Bootswatch
+ *= require_self
+ *= require readable/loader
+ *= require readable/bootswatch
+*/

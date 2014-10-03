@@ -32,6 +32,8 @@ gem 'http_accept_language'
 
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'execjs'
+gem 'less-rails'
 
 group :development, :test do
   gem 'spring'
