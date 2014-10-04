@@ -34,6 +34,9 @@ gem 'haml-rails'
 gem 'erb2haml'
 gem 'execjs'
 gem 'less-rails'
+gem 'devise'
+gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'active_admin_importable'
 
 group :development, :test do
   gem 'spring'
