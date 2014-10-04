@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004112625) do
+ActiveRecord::Schema.define(version: 20141004130230) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -52,6 +52,12 @@ ActiveRecord::Schema.define(version: 20141004112625) do
     t.date     "end_at"
     t.string   "place"
     t.boolean  "is_breakable_japanese_record"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "class_categories", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
