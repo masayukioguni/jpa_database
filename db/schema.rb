@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141004130230) do
+ActiveRecord::Schema.define(version: 20141004150005) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 20141004130230) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "benchpresses", force: true do |t|
+    t.integer  "lifter_id"
+    t.integer  "weight_category_id"
+    t.integer  "class_category_id"
+    t.integer  "championship_id"
+    t.float    "weight",             limit: 24
+    t.float    "first",              limit: 24
+    t.float    "second",             limit: 24
+    t.float    "third",              limit: 24
+    t.boolean  "use_gear"
+    t.boolean  "is_disqualified"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "championships", force: true do |t|
     t.string   "name"
     t.date     "start_at"
@@ -58,6 +73,36 @@ ActiveRecord::Schema.define(version: 20141004130230) do
 
   create_table "class_categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "lifters", force: true do |t|
+    t.string   "name"
+    t.string   "name_kana"
+    t.date     "birthday"
+    t.string   "gender"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "powerliftings", force: true do |t|
+    t.integer  "lifter_id"
+    t.integer  "weight_category_id"
+    t.integer  "class_category_id"
+    t.integer  "championship_id"
+    t.float    "weight",             limit: 24
+    t.float    "squat_first",        limit: 24
+    t.float    "squat_second",       limit: 24
+    t.float    "squat_third",        limit: 24
+    t.float    "benchpress_first",   limit: 24
+    t.float    "benchpress_second",  limit: 24
+    t.float    "benchpress_third",   limit: 24
+    t.float    "deadlift_first",     limit: 24
+    t.float    "deadlift_second",    limit: 24
+    t.float    "deadlift_third",     limit: 24
+    t.boolean  "use_gear"
+    t.boolean  "is_disqualified"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
