@@ -1,11 +1,7 @@
 language: ruby
 install:
   - time gem install bundler # use the very latest Bundler
-  - time bundle install --without development --path=./bundle
-  - bundle clean # delete now-outdated gems
-  - time gem install pry-rails -v '0.3.2'
-  - time gem install debugger-linecache -v '1.2.0'
-  - time gem install timers -v '4.0.1'
+  - travis_retry bundle install
 cache: bundler
 
 rvm:
@@ -14,6 +10,6 @@ rvm:
 env:
   - RAILS_ENV=test
 before_script:
-  - bundle exec rake db:create db:schema:load
+  - bundle exec rake db:create db:migrate
 script:
   - bundle exec rspec spec
