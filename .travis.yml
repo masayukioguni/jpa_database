@@ -1,4 +1,7 @@
 language: ruby
+install:
+  - time gem install pry-rails -v '0.3.2'
+ 
 cache: bundler
 
 rvm:
