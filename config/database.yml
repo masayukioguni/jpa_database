@@ -13,7 +13,7 @@ default: &default
   adapter: mysql2
   encoding: utf8
   pool: 5
-  username: root
+  username: <%= ENV['JPA_DATABASE_USERNAME_DEV'] %>
   password: <%= ENV['JPA_DATABASE_PASSWORD_DEV'] %>
   socket: /tmp/mysql.sock
 
