@@ -12,7 +12,6 @@
     = stylesheet_link_tag "readable", :media => "all"
     = yield(:page_stylesheet) if content_for?(:page_stylesheet)
   %body
-    = yield
     / Fixed navbar
     .navbar.navbar-inverse.navbar-fixed-top
       .container
@@ -49,6 +48,7 @@
                   %a{:href => "#"} One more separated link
         / /.nav-collapse
     .container.theme-showcase
+      = yield
       / Main jumbotron for a primary marketing message or call to action
       .jumbotron
         %h1 Hello, world!

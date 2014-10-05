@@ -1,0 +1,14 @@
+.page-header
+  %h1#tables Lifters
+.bs-component
+  %table.table.table-striped.table-hover.table-bordered
+    %thead
+      %tr
+        %th name
+        %th name_kana
+      %tbody
+        - @lifters.each do |lifter|
+          %tr
+            %td= lifter.name
+            %td= lifter.name_kana
+    

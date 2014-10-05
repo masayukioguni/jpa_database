@@ -23,8 +23,9 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'twitter-bootswatch-rails', '~> 3.1.1'
-gem 'twitter-bootswatch-rails-helpers'
+gem "twitter-bootstrap-rails"
+gem 'bootstrap-sass', '3.1.1'
+
 gem 'therubyracer'
 
 gem 'kaminari'
