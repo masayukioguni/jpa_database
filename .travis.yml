@@ -2,7 +2,6 @@ language: ruby
 install:
   - time gem install bundler # use the very latest Bundler
   - travis_retry bundle install
-  - bundle clean # delete now-outdated gems
 cache: bundler
 
 rvm:
@@ -11,6 +10,6 @@ rvm:
 env:
   - RAILS_ENV=test
 before_script:
-  - bundle exec rake db:create db:schema:load
+  - bundle exec rake db:create db:migrate
 script:
   - bundle exec rspec spec
