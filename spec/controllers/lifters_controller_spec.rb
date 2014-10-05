@@ -38,7 +38,7 @@ RSpec.describe LiftersController, :type => :controller do
 
   describe "GET index" do
     it "assigns all lifters as @lifters" do
-      lifter = Lifter.create! valid_attributes
+      lifter = FactoryGirl.create(:lifter,gender: :male)
       get :index, {}, valid_session
       expect(assigns(:lifters)).to eq([lifter])
     end
@@ -46,114 +46,11 @@ RSpec.describe LiftersController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested lifter as @lifter" do
-      lifter = Lifter.create! valid_attributes
+      lifter = FactoryGirl.create(:lifter,gender: :female)
       get :show, {:id => lifter.to_param}, valid_session
       expect(assigns(:lifter)).to eq(lifter)
     end
   end
 
-  describe "GET new" do
-    it "assigns a new lifter as @lifter" do
-      get :new, {}, valid_session
-      expect(assigns(:lifter)).to be_a_new(Lifter)
-    end
-  end
-
-  describe "GET edit" do
-    it "assigns the requested lifter as @lifter" do
-      lifter = Lifter.create! valid_attributes
-      get :edit, {:id => lifter.to_param}, valid_session
-      expect(assigns(:lifter)).to eq(lifter)
-    end
-  end
-
-  describe "POST create" do
-    describe "with valid params" do
-      it "creates a new Lifter" do
-        expect {
-          post :create, {:lifter => valid_attributes}, valid_session
-        }.to change(Lifter, :count).by(1)
-      end
-
-      it "assigns a newly created lifter as @lifter" do
-        post :create, {:lifter => valid_attributes}, valid_session
-        expect(assigns(:lifter)).to be_a(Lifter)
-        expect(assigns(:lifter)).to be_persisted
-      end
-
-      it "redirects to the created lifter" do
-        post :create, {:lifter => valid_attributes}, valid_session
-        expect(response).to redirect_to(Lifter.last)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns a newly created but unsaved lifter as @lifter" do
-        post :create, {:lifter => invalid_attributes}, valid_session
-        expect(assigns(:lifter)).to be_a_new(Lifter)
-      end
-
-      it "re-renders the 'new' template" do
-        post :create, {:lifter => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
-      end
-    end
-  end
-
-  describe "PUT update" do
-    describe "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested lifter" do
-        lifter = Lifter.create! valid_attributes
-        put :update, {:id => lifter.to_param, :lifter => new_attributes}, valid_session
-        lifter.reload
-        skip("Add assertions for updated state")
-      end
-
-      it "assigns the requested lifter as @lifter" do
-        lifter = Lifter.create! valid_attributes
-        put :update, {:id => lifter.to_param, :lifter => valid_attributes}, valid_session
-        expect(assigns(:lifter)).to eq(lifter)
-      end
-
-      it "redirects to the lifter" do
-        lifter = Lifter.create! valid_attributes
-        put :update, {:id => lifter.to_param, :lifter => valid_attributes}, valid_session
-        expect(response).to redirect_to(lifter)
-      end
-    end
-
-    describe "with invalid params" do
-      it "assigns the lifter as @lifter" do
-        lifter = Lifter.create! valid_attributes
-        put :update, {:id => lifter.to_param, :lifter => invalid_attributes}, valid_session
-        expect(assigns(:lifter)).to eq(lifter)
-      end
-
-      it "re-renders the 'edit' template" do
-        lifter = Lifter.create! valid_attributes
-        put :update, {:id => lifter.to_param, :lifter => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
-      end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested lifter" do
-      lifter = Lifter.create! valid_attributes
-      expect {
-        delete :destroy, {:id => lifter.to_param}, valid_session
-      }.to change(Lifter, :count).by(-1)
-    end
-
-    it "redirects to the lifters list" do
-      lifter = Lifter.create! valid_attributes
-      delete :destroy, {:id => lifter.to_param}, valid_session
-      expect(response).to redirect_to(lifters_url)
-    end
-  end
 
 end
