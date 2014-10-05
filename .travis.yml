@@ -8,3 +8,10 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.1
+
+env:
+  - RAILS_ENV=test
+before_script:
+  - bundle exec rake db:create db:schema:load
+script:
+  - bundle exec rspec spec
