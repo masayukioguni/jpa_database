@@ -5,6 +5,6 @@ FactoryGirl.define do
     name "MyString"
     name_kana "MyString"
     birthday "2014-10-04"
-    gender "MyString"
+    gender "male"
   end
 end
