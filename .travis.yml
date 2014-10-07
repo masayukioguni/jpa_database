@@ -1,8 +1,10 @@
 language: ruby
 install:
   - time gem install bundler # use the very latest Bundler
-  - travis_retry bundle install
-cache: bundler
+  - travis_retry bundle install --jobs=4 --without production --deployment
+
+cache: 
+  bundler: true
 
 rvm:
   - 2.1.1
