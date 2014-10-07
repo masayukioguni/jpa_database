@@ -2,9 +2,9 @@
 
 FactoryGirl.define do
   factory :lifter do
-    name "MyString"
-    name_kana "MyString"
-    birthday "2014-10-04"
+    sequence(:name) { |n| "lifter_name_#{n}" }
+    sequence(:name_kana) { |n| "lifter_kana_#{n}" }
+    birthday DateTime.now
     gender "male"
   end
 end

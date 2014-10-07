@@ -7,6 +7,4 @@ ActiveAdmin.register Championship do
                  place: hash[:place],
                  is_breakable_japanese_record: hash[:is_breakable_japanese_record])
   end
-
-
 end

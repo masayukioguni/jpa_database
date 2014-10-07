@@ -2,10 +2,10 @@
 
 FactoryGirl.define do
   factory :championship do
-    name "MyString"
-    start_at "2014-10-04"
-    end_at "2014-10-04"
-    place "MyString"
+    sequence(:name) { |n| "championship_name_#{n}" }
+    start_at DateTime.now - 3
+    end_at DateTime.now + 3
+    sequence(:place) { |n| "championship_place_#{n}" }
     is_breakable_japanese_record false
   end
 end
