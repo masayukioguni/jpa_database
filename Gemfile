@@ -40,6 +40,7 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'active_admin_importable'
 
 gem 'wilksformula'
+gem 'unicorn'
 
 group :development, :test do
   gem 'spring'
