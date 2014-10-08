@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :weight_category do
-    name "MyString"
+    sequence(:name) { |n| "weight_name_#{n}" }
     min 1.5
     max 1.5
   end

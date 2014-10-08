@@ -7,4 +7,12 @@ class Benchpress < ActiveRecord::Base
   include JapaneseRecord
 
 
+  def formula
+    lifter = Lifter.where("id = ?" , lifter_id).first
+    if lifter.male?
+      Wilksformula.men_formula(weight,result)
+    else
+      Wilksformula.women_formula(weight,result)
+    end
+  end
 end

@@ -1,5 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe Lifter, :type => :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe 'male' do
+    it "男性" do
+      @lifter = FactoryGirl.create(:lifter,:gender => "male")
+      expect(@lifter.male?).to eq(true)
+    end
+  end
 end
