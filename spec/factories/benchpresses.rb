@@ -12,5 +12,9 @@ FactoryGirl.define do
     third 1.5
     result 1.5
     use_gear false
+
+    trait :gear do
+      use_gear true
+    end
   end
 end

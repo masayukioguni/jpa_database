@@ -50,7 +50,7 @@ RSpec.describe Benchpress, :type => :model do
                                            :class_category_id => @class_category.id,
                                            :championship_id => @japan_championship.id,
                                            :result => 100,
-                                           :use_gear => true)
+                                           :gear => true)
       end
       it "日本記録は全日本の記録からとる" do
         model =  Benchpress.benchpress_japan_record(@weight_category.id,@class_category.id,true)
