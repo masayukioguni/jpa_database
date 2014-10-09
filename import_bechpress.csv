@@ -1,0 +1,3 @@
+name,weight,championship_name,weight_category_name,class_gategory_name,first,second,third,use_gear
+"小國 正之",66.0,"全日本","66kg","一般",100,-105,105,true
+"小國 正之",67.0,"全日本","66kg","一般",,,,true

@@ -11,6 +11,7 @@ ActiveAdmin.register Benchpress do
     column :first
     column :second
     column :third
+    column :result
     column :championship
     column :use_gear
     column :is_disqualified
@@ -18,20 +19,27 @@ ActiveAdmin.register Benchpress do
   end
 
   active_admin_importable do |model, hash|
-    p hash
-  end 
-  # See permitted parameters documentation:
-  # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
-  #
-  # permit_params :list, :of, :attributes, :on, :model
-  #
-  # or
-  #
-  # permit_params do
-  #   permitted = [:permitted, :attributes]
-  #   permitted << :other if resource.something?
-  #   permitted
-  # end
+    lifter =  Lifter.select(:id).where('name LIKE ?', "%#{hash[:name]}%").first
+    championship =  Championship.select(:id).where('name LIKE ?', "%#{hash[:championship_name]}%").first
+    weight_category =  WeightCategory.select(:id).where('name LIKE ?', "%#{hash[:weight_category_name]}%").first
+    class_category =  ClassCategory.select(:id).where('name LIKE ?', "%#{hash[:class_category_name]}%").first
+    first_record =  hash[:first].nil? ?  0 : hash[:first].to_f
+    second_record = hash[:second].nil? ?  0 : hash[:second].to_f
+    third_record = hash[:third].nil? ?  0 : hash[:third].to_f
+    
+    result = [first_record,second_record,third_record,0].max
+    is_disqualified = result == 0 ? true : false
 
-
+    model.create(lifter_id: lifter.id, 
+                 championship_id: championship.id,
+                 class_category_id: class_category.id,
+                 weight_category_id: weight_category.id,
+                 weight: hash[:weight],
+                 first: hash[:first],
+                 second: hash[:second],
+                 third: hash[:third],
+                 result: result,
+                 use_gear:hash[:use_gear],
+                 is_disqualified: is_disqualified)
+  end
 end
