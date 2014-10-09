@@ -6,7 +6,6 @@ class Benchpress < ActiveRecord::Base
 
   include JapaneseRecord
 
-
   def formula
     lifter = Lifter.where("id = ?" , lifter_id).first
     if lifter.male?
