@@ -39,7 +39,7 @@ ActiveAdmin.register Benchpress do
                  second: hash[:second],
                  third: hash[:third],
                  result: result,
-                 use_gear:hash[:use_gear],
+                 use_gear: hash[:use_gear],
                  is_disqualified: is_disqualified)
   end
 end

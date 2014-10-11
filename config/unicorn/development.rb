@@ -1,8 +1,13 @@
+
 RAILS_ROOT = File.expand_path('../../', File.dirname(__FILE__))
 working_directory RAILS_ROOT
 
+# workers
+worker_processes 3
+
+
 listen File.join(RAILS_ROOT, "tmp/pids/unicorn.sock"), :backlog => 64
-listen 12626
+listen 3000
 timeout 30
 
 pid File.join(RAILS_ROOT, "tmp/pids/unicorn.pid")
@@ -19,10 +24,15 @@ before_fork do |server, worker|
   defined?(ActiveRecord::Base) &&
     ActiveRecord::Base.connection.disconnect!
 
+  # Before forking, kill the master process that belongs to the .oldbin PID.
+  # This enables 0 downtime deploys.
   old_pid = "#{server.config[:pid]}.oldbin"
-  if old_pid != server.pid
-    sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-    Process.kill(sig, File.read(old_pid).to_i)
+  if File.exists?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
   end
 end
 

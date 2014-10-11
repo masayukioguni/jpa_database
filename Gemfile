@@ -41,6 +41,8 @@ gem 'active_admin_importable'
 
 gem 'wilksformula'
 gem 'unicorn'
+gem 'dotenv-rails'
+gem 'dotenv-deployment'
 
 group :development, :test do
   gem 'spring'
@@ -71,8 +73,17 @@ group :development, :test do
   gem 'awesome_print'
 
   gem 'quiet_assets'
-  gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler', require: false
+  gem 'capistrano', '~> 3.2.1'
+  gem 'capistrano-rails'
+  gem 'rvm1-capistrano3', require: false
+  gem 'capistrano-bundler'
+  gem 'capistrano3-unicorn' # unicornを使っている場合のみ
+  gem 'capistrano3-env', '~> 0.1.0'
+
 end
+
+
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
