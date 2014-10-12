@@ -4,7 +4,7 @@ class LiftersController < ApplicationController
   # GET /lifters
   # GET /lifters.json
   def index
-    @lifters = Lifter.all
+    @lifters = Lifter.page(params[:page]).per(5)
   end
 
   # GET /lifters/1
@@ -17,7 +17,7 @@ class LiftersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_lifter
       @lifter = Lifter.find(params[:id])
-      
+
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
