@@ -45,7 +45,7 @@ gem 'dotenv-rails'
 gem 'dotenv-deployment'
 gem 'rack-mini-profiler', require: false
 gem 'quiet_assets'
-
+gem 'activesupport'
 
 group :development, :test do
   gem 'spring'

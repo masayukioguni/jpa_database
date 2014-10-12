@@ -1,4 +1,6 @@
 class Lifter < ActiveRecord::Base
+  after_initialize :default_value, if: :new_record?
+
   has_many :Benchpress
   has_many :Powerlifting
 
@@ -9,4 +11,19 @@ class Lifter < ActiveRecord::Base
   def male?
     gender == "male"
   end
+  
+  def bp_count
+    Benchpress.where("lifter_id = ?" , id).count
+  end
+  
+  def pl_count
+    Powerlifting.where("lifter_id = ?" , id).count
+  end
+
+  private
+  def default_value
+    self.name_kana ||= 'defalut_value'
+    self.gender ||= 'male'  
+  end
+
 end

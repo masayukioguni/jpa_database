@@ -38,7 +38,7 @@ RSpec.describe LiftersController, :type => :controller do
 
   describe "GET index" do
     it "assigns all lifters as @lifters" do
-      lifter = FactoryGirl.create(:lifter,gender: :male)
+      lifter = FactoryGirl.create(:lifter,gender: "male")
       get :index, {}, valid_session
       expect(assigns(:lifters)).to eq([lifter])
     end
@@ -46,7 +46,7 @@ RSpec.describe LiftersController, :type => :controller do
 
   describe "GET show" do
     it "assigns the requested lifter as @lifter" do
-      lifter = FactoryGirl.create(:lifter,gender: :female)
+      lifter = FactoryGirl.create(:lifter,gender: "female")
       get :show, {:id => lifter.to_param}, valid_session
       expect(assigns(:lifter)).to eq(lifter)
     end

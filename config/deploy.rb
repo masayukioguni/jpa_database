@@ -16,7 +16,7 @@ set :rvm1_ruby_version, '2.1.3'
 set :format, :pretty
 set :log_level, :debug # :info or :debug
 
-set :linked_files, %w{config/database.yml .env}
+set :linked_files, %w(config/database.yml .env)
 set :linked_dirs, %w(bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle)
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
@@ -32,7 +32,7 @@ namespace :deploy do
 
   desc 'Upload database.yml'
   task :upload do
-    on roles(:app) do |host|
+    on roles(:app) do |_host|
       if test "[ ! -d #{shared_path}/config ]"
         execute "mkdir -p #{shared_path}/config"
       end
