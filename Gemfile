@@ -73,7 +73,7 @@ group :development, :test do
   gem 'awesome_print'
 
   gem 'quiet_assets'
-  gem 'rack-mini-profiler', require: true
+  gem 'rack-mini-profiler', require: false
   gem 'capistrano', '~> 3.2.1'
   gem 'capistrano-rails'
   gem 'rvm1-capistrano3', require: false
