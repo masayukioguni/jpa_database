@@ -21,9 +21,12 @@ before_fork do |server, worker|
     ActiveRecord::Base.connection.disconnect!
 
   old_pid = "#{server.config[:pid]}.oldbin"
-  if old_pid != server.pid
-    sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-    Process.kill(sig, File.read(old_pid).to_i)
+  if File.exist?(old_pid) && server.pid != old_pid
+    begin
+      Process.kill("QUIT", File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+      # someone else did our job for us
+    end
   end
 end
 
