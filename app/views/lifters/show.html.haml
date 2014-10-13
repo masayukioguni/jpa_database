@@ -1,4 +1,63 @@
 %p#notice= notice
-= @lifter.name
+%h1= @lifter.name
+/ Nav tabs
+%ul.nav.nav-tabs{:role => "tablist"}
+  %li.active
+    %a{"data-toggle" => "tab", :href => "#gear_benchpress", :role => "tab"} ベンチプレス(ギア)
+  %li
+    %a{"data-toggle" => "tab", :href => "#benchpress", :role => "tab"} ベンチプレス
+  %li
+    %a{"data-toggle" => "tab", :href => "#messages", :role => "tab"} Messages
+  %li
+    %a{"data-toggle" => "tab", :href => "#settings", :role => "tab"} Settings
+/ Tab panes
+.tab-content
+  #gear_benchpress.tab-pane.active 
+    .bs-component
+      %table.table.table-striped.table-hover.table-bordered
+        %thead
+          %tr
+            %th 体重
+            %th BP1
+            %th BP2
+            %th BP3
+            %th 結果
+            %th F記録
+            %th 大会名
+          %tbody
+            - @gear_bps.each do |bp|
+              %tr
+                %td= bp.weight
+                %td= bp.first
+                %td= bp.second
+                %td= bp.third
+                %td= bp.result
+                %td= bp.formula
+                %td= link_to bp.championship.name, "championship/#{bp.championship_id}"
+
+  #benchpress.tab-pane
+    .bs-component
+      %table.table.table-striped.table-hover.table-bordered
+        %thead
+          %tr
+            %th 体重
+            %th BP1
+            %th BP2
+            %th BP3
+            %th 結果
+            %th F記録
+            %th 大会名
+          %tbody
+            - @bps.each do |bp|
+              %tr
+                %td= bp.weight
+                %td= bp.first
+                %td= bp.second
+                %td= bp.third
+                %td= bp.result
+                %td= bp.formula
+                %td= link_to bp.championship.name, "championship/#{bp.championship_id}"
+  #messages.tab-pane message
+  #settings.tab-pane setting
 
 = link_to 'Back', lifters_path

@@ -58,6 +58,7 @@ group :development, :test do
   gem 'libnotify', require: false
   gem 'growl', require: false
 
+  gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'simplecov', require: false
   gem 'simplecov-rcov', require: false

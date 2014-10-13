@@ -1,5 +1,7 @@
 ActiveAdmin.register Benchpress do
-  permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,:championship_id, :first, :second, :third
+  permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
+                :championship_id, :first, :second, :third, :use_gear, :formula,
+                :is_disqualified
   
   index do
     selectable_column
@@ -34,8 +36,8 @@ ActiveAdmin.register Benchpress do
     class_category = ClassCategory.create(name: hash[:class_category_name]) if class_category.blank?
 
     count = model.where('lifter_id = ? AND championship_id = ? AND weight_category_id = ? AND class_category_id = ?',
-         lifter.id,championship.id,weight_category.id,class_category.id).count
-    next unsess count == 0
+                        lifter.id,championship.id,weight_category.id,class_category.id).count
+    next unless count == 0
 
     first_record =  hash[:first].nil? ?  0 : hash[:first].to_f
     second_record = hash[:second].nil? ?  0 : hash[:second].to_f
@@ -44,7 +46,7 @@ ActiveAdmin.register Benchpress do
     result = [first_record,second_record,third_record,0].max
     is_disqualified = result == 0 ? true : false
 
-    formual = 0.0
+    formula = 0.0
     weight = hash[:weight].nil? ?  0 : hash[:weight].to_f
     if hash[:gender] == 'male'
       formula = Wilksformula.men_formula(weight,result)
