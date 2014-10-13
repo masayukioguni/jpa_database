@@ -52,6 +52,7 @@ test:
 #
 production:
   <<: *default
-  database: jpa_database_production
-  username: jpa_database
-  password: <%= ENV['JPA_DATABASE_DATABASE_PASSWORD'] %>
+  username: <%= ENV['JPA_DATABASE_USERNAME'] %>
+  password: <%= ENV['JPA_DATABASE_PASSWORD'] %>
+  socket: <%= ENV['JPA_DATABASE_SOCKET'] %>
+  database: <%= ENV['JPA_DATABASE_DATABASE'] %>

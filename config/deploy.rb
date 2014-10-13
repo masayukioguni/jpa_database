@@ -4,8 +4,8 @@ lock '3.2.1'
 
 set :application, 'JPADatabase'
 set :repo_url, 'https://github.com/masayukioguni/jpa_database.git'
-set :deploy_to, "/home/deploy/staging"
 set :keep_releases, 5
+set :deploy_to, "/home/deploy/#{ARGV[0]}"
 
 set :config_backend, :dotenv # currently this is the only supported backend
 set :config_file,    "#{shared_path}/.env"  # you might want to use .env.production instead

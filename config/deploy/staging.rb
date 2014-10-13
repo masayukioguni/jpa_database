@@ -1,5 +1,4 @@
 set :branch, 'master'
-
 set :rails_env, 'development' 
 
 SERVER="deploy@#{ENV['JPA_DATABASE_SERVER_DEV']}"

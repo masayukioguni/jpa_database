@@ -13,7 +13,6 @@ class LiftersController < ApplicationController
     @lifter
     @gear_bps = @lifter.benchpress_record(true)
     @bps = @lifter.benchpress_record(false)
-
     @pls = Powerlifting.where("lifter_id = ?",@lifter.id)
     
   end
