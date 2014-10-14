@@ -82,13 +82,11 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn' # unicornを使っている場合のみ
   gem 'capistrano3-env', '~> 0.1.0'
-
-end
-
-group :test do
   gem 'coveralls', :require => false
   gem "codeclimate-test-reporter", :require => false
+
 end
+
 
 
 

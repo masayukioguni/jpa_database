@@ -1,7 +1,6 @@
 require 'simplecov'
 require 'coveralls'
 Coveralls.wear!('rails')
-
 SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
   SimpleCov::Formatter::HTMLFormatter,
   Coveralls::SimpleCov::Formatter
@@ -9,7 +8,6 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start do
   add_filter '.bundle/'
 end
-
 
 require "codeclimate-test-reporter"
 CodeClimate::TestReporter.start
