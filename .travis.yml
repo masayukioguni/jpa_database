@@ -3,6 +3,10 @@ install:
   - time gem install bundler # use the very latest Bundler
   - travis_retry bundle install --jobs=4 --without production --deployment
 
+addons:
+   code_climate:
+     repo_token: a9ed171201b91459591db09479c75063782118ad33b7449f57318cdec9a36abe 
+
 cache: 
   bundler: true
 
