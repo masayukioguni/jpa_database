@@ -8,6 +8,7 @@ SimpleCov.formatter = SimpleCov::Formatter::MultiFormatter[
 SimpleCov.start do
   add_filter '.bundle/'
 end
+Coveralls.wear!('rails')
 
 
 require "codeclimate-test-reporter"
