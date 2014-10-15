@@ -209,7 +209,6 @@ GEM
     mime-types (2.3)
     minitest (5.4.2)
     multi_json (1.10.1)
-    mysql2 (0.3.16)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.1)
@@ -420,7 +419,6 @@ DEPENDENCIES
   kaminari
   less-rails
   libnotify
-  mysql2
   pry
   pry-byebug
   pry-doc
