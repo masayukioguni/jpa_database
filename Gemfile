@@ -45,6 +45,7 @@ gem 'dotenv-rails'
 gem 'dotenv-deployment'
 gem 'rack-mini-profiler', require: false
 gem 'activesupport'
+gem 'sqlite3-ruby' 
 
 group :development, :test do
   gem 'spring'
