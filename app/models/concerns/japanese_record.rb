@@ -15,7 +15,7 @@ module JapaneseRecord
              :weight_category,:class_category)
       .where("weight_category_id = ? AND class_category_id = ? AND use_gear = ? AND championships.is_breakable_japanese_record = ?",
              weight_category_id,class_category_id,use_gear,true)
-      .order(created_at: :desc).first
+      .order('championships.start_at desc').first
     end
   end
 

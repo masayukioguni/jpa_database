@@ -31,10 +31,9 @@ RSpec.describe Benchpress, :type => :model do
     end
     context '日本記録を更新できる大会を複数含む場合' do
       before(:each) do
-        @local_championship = FactoryGirl.create(:championship,:is_breakable_japanese_record => false)
-        @section_championship = FactoryGirl.create(:championship,:is_breakable_japanese_record => true)
-        @japan_championship = FactoryGirl.create(:championship,:is_breakable_japanese_record => true)
-
+        @local_championship = FactoryGirl.create(:championship,:is_breakable_japanese_record => false, :start_at => '2011/01/01')
+        @section_championship = FactoryGirl.create(:championship,:is_breakable_japanese_record => true, :start_at => '2012/01/01')
+        @japan_championship = FactoryGirl.create(:championship,:is_breakable_japanese_record => true, :start_at => '2011/06/01')
 
         @weight_category = FactoryGirl.create(:weight_category)
         @class_category = FactoryGirl.create(:class_category)
