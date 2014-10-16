@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.6'
 # Use mysql as the database for Active Record
@@ -46,6 +45,7 @@ gem 'dotenv-deployment'
 gem 'rack-mini-profiler', require: false
 gem 'activesupport'
 gem 'sqlite3-ruby' 
+gem 'rack-google-analytics'
 
 group :development, :test do
   gem 'spring'
