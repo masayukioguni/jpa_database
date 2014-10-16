@@ -3,8 +3,7 @@ RAILS_ROOT = File.expand_path('../../', File.dirname(__FILE__))
 working_directory RAILS_ROOT
 
 # workers
-worker_processes 3
-
+worker_processes 1
 
 listen File.join(RAILS_ROOT, "tmp/pids/unicorn.sock"), :backlog => 64
 listen 3000
