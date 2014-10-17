@@ -17,7 +17,7 @@ set :format, :pretty
 set :log_level, :debug # :info or :debug
 
 set :linked_files, %w(config/database.yml .env)
-set :linked_dirs, %w(bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle db)
+set :linked_dirs, %w(bin log tmp/backup tmp/pids tmp/cache tmp/sockets vendor/bundle)
 set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
 before 'deploy', 'rvm1:install:rvm'  # install/update RVM
