@@ -18,5 +18,5 @@ test:
 production:
   adapter: sqlite3
   encoding: utf8
-  database: db/production.sqlite3
+  database: <%= ENV['JPA_DATABASE_DATABASE'] %>
   timeout: 5000
