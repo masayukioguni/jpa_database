@@ -1,6 +1,3 @@
-def record(value)
-  value.nil? ?  0 : value.to_f 
-end
 
 ActiveAdmin.register Powerlifting do
   permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
@@ -32,40 +29,29 @@ ActiveAdmin.register Powerlifting do
   end
 
   active_admin_importable do |model, hash|
-    lifter = Lifter.select(:id).where('name LIKE ?', "%#{hash[:name]}%").first
-    lifter = Lifter.create(name: hash[:name].force_encoding("utf-8"),
-                           name_kana: "test",
-                           gender: hash[:gender].force_encoding("utf-8")) if lifter.blank?
+    lifter = AdminUtil.lifter(hash)     
+    championship = AdminUtil.championship(hash)
+
+    next if AdminUtil.exist?(model,lifter.id,championship.id)
     
-    championship =  Championship.select(:id).where('name LIKE ?', "%#{hash[:championship_name]}%").first
-    championship = Championship.create(name: hash[:championship_name].force_encoding("utf-8")) if championship.blank? 
+    weight_category =  AdminUtil.weight_category(hash)
+    class_category = AdminUtil.class_category(hash)
+
+    first_sq_record =  AdminUtil.record(hash[:squat_first])
+    second_sq_record = AdminUtil.record(hash[:squat_second])
+    third_sq_record = AdminUtil.record(hash[:squat_third])
     
-    weight_category =  WeightCategory.select(:id).where('name LIKE ?', "%#{hash[:weight_category_name]}%").first
-    weight_category = WeightCategory.create(name: hash[:weight_category_name].force_encoding("utf-8")) if weight_category.blank? 
+    first_bp_record = AdminUtil.record(hash[:benchpress_first])
+    second_bp_record = AdminUtil.record(hash[:benchpress_second])
+    third_bp_record = AdminUtil.record(hash[:benchpress_third])
 
-    class_category =  ClassCategory.select(:id).where('name LIKE ?', "%#{hash[:class_category_name]}%").first
-    class_category = ClassCategory.create(name: hash[:class_category_name].force_encoding("utf-8")) if class_category.blank?
+    first_dl_record = AdminUtil.record(hash[:deadlift_first])
+    second_dl_record = AdminUtil.record(hash[:deadlift_second])
+    third_dl_record = AdminUtil.record(hash[:deadlift_third])
 
-    count = model.where('lifter_id = ? AND championship_id = ? AND weight_category_id = ? AND class_category_id = ?',
-                        lifter.id,championship.id,weight_category.id,class_category.id).count
-    next unless count == 0
-
-    
-    first_sq_record =  record(hash[:squat_first])
-    second_sq_record = record(hash[:squat_second])
-    third_sq_record = record(hash[:squat_third])
-    
-    first_bp_record =  record(hash[:benchpress_first])
-    second_bp_record = record(hash[:benchpress_second])
-    third_bp_record = record(hash[:benchpress_third])
-
-    first_dl_record =  record(hash[:deadlift_first])
-    second_dl_record = record(hash[:deadlift_second])
-    third_dl_record = record(hash[:deadlift_third])
-
-    sq_result = [first_sq_record,second_sq_record,third_sq_record,0].max
-    bp_result = [first_bp_record,second_bp_record,third_bp_record,0].max
-    dl_result = [first_dl_record,second_dl_record,third_dl_record,0].max
+    sq_result = AdminUtil.result(first_sq_record,second_sq_record,third_sq_record)
+    bp_result = AdminUtil.result(first_bp_record,second_bp_record,third_bp_record)
+    dl_result = AdminUtil.result(first_dl_record,second_dl_record,third_dl_record)
 
     result = sq_result + bp_result + dl_result
 
