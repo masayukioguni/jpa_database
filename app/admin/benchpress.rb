@@ -1,3 +1,7 @@
+def record(value)
+  value.nil? ?  0 : value.to_f 
+end
+
 ActiveAdmin.register Benchpress do
   permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
                 :championship_id, :first, :second, :third, :use_gear, :formula,
@@ -14,7 +18,7 @@ ActiveAdmin.register Benchpress do
     column :second
     column :third
     column :result
-    column :formulas
+    column :formula
     column :championship
     column :use_gear
     column :is_disqualified
@@ -40,9 +44,9 @@ ActiveAdmin.register Benchpress do
                         lifter.id,championship.id,weight_category.id,class_category.id).count
     next unless count == 0
 
-    first_record =  hash[:first].nil? ?  0 : hash[:first].to_f
-    second_record = hash[:second].nil? ?  0 : hash[:second].to_f
-    third_record = hash[:third].nil? ?  0 : hash[:third].to_f
+    first_record =  record(hash[:first])
+    second_record = record(hash[:second])
+    third_record = record(hash[:third])
     
     result = [first_record,second_record,third_record,0].max
     is_disqualified = result == 0 ? true : false
