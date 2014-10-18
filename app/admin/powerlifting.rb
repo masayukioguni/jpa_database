@@ -55,15 +55,10 @@ ActiveAdmin.register Powerlifting do
 
     result = sq_result + bp_result + dl_result
 
-    is_disqualified = result == 0 ? true : false
+    is_disqualified = AdminUtil.disqualified?(result)
 
-    formula = 0.0
-    weight = hash[:weight].nil? ?  0 : hash[:weight].to_f
-    if lifter.gender == 'male'
-      formula = Wilksformula.men_formula(weight,result)
-    else
-      formula = Wilksformula.women_formula(weight,result)
-    end
+    weight = AdminUtil.record(hash[:weight])
+    formula = AdminUtil.formula(lifter.gender,weight,result)
 
     model.create(lifter_id: lifter.id, 
                  championship_id: championship.id,
