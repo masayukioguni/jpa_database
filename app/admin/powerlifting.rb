@@ -76,7 +76,7 @@ ActiveAdmin.register Powerlifting do
                  deadlift_third: third_dl_record,
                  result: result,
                  formula: formula,
-                 use_gear: hash[:use_gear],
+                 use_gear: AdminUtil.use_gear?(hash[:use_gear]),
                  is_disqualified: is_disqualified)
   end
 
