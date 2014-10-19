@@ -3,7 +3,6 @@ ActiveAdmin.register Powerlifting do
   permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
                 :championship_id, :first, :second, :third, :use_gear, :formula,
                 :is_disqualified
-  
   index do
     selectable_column
     id_column
@@ -34,7 +33,7 @@ ActiveAdmin.register Powerlifting do
 
     next if AdminUtil.exist?(model,lifter.id,championship.id)
     
-    weight_category =  AdminUtil.weight_category(hash)
+    weight_category = AdminUtil.weight_category(hash)
     class_category = AdminUtil.class_category(hash)
 
     first_sq_record =  AdminUtil.record(hash[:squat_first])
@@ -55,7 +54,7 @@ ActiveAdmin.register Powerlifting do
 
     result = sq_result + bp_result + dl_result
 
-    is_disqualified = AdminUtil.disqualified?(result)
+    is_disqualified = AdminUtil.pl_disqualified?(result)
 
     weight = AdminUtil.record(hash[:weight])
     formula = AdminUtil.formula(lifter.gender,weight,result)

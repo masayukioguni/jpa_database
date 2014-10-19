@@ -40,7 +40,11 @@ class AdminUtil
 
     def disqualified?(result)
       result == 0 ? true : false
-    end 
+    end
+
+    def pl_disqualified?(sq,bp,dl)
+      (sq == 0 || bp == 0 || dl == 0) ? true : false
+    end
 
     def formula(gender,weight,result)
       if gender == 'male'
