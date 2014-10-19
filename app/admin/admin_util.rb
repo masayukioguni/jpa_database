@@ -5,27 +5,28 @@ class AdminUtil
     end
 
     def lifter(hash)
-      lifter = Lifter.where('name LIKE ?', "%#{hash[:name]}%").first
-      lifter = Lifter.create(name: hash[:name].force_encoding("utf-8"),
+      name = hash[:name].force_encoding("utf-8").scrub('?')
+      lifter = Lifter.where('name LIKE ?', "%#{name}%").first
+      lifter = Lifter.create(name: name,
                              name_kana: "test",
-                             gender: hash[:gender].force_encoding("utf-8")) if lifter.blank?
+                             gender: hash[:gender].force_encoding("utf-8").scrub('?')) if lifter.blank?
       return lifter
     end
 
     def championship(hash)
-      championship =  Championship.select(:id).where('name LIKE ?', "%#{hash[:championship_name]}%").first
+      championship = Championship.select(:id).where('name LIKE ?', "%#{hash[:championship_name]}%").first
       championship = Championship.create(name: hash[:championship_name].force_encoding("utf-8")) if championship.blank? 
       return championship
     end
 
     def weight_category(hash)
-      weight_category =  WeightCategory.select(:id).where('name LIKE ?', "%#{hash[:weight_category_name]}%").first
+      weight_category = WeightCategory.select(:id).where('name LIKE ?', "%#{hash[:weight_category_name]}%").first
       weight_category = WeightCategory.create(name: hash[:weight_category_name].force_encoding("utf-8")) if weight_category.blank? 
       return weight_category
     end
 
     def class_category(hash)
-      class_category =  ClassCategory.select(:id).where('name LIKE ?', "%#{hash[:class_category_name]}%").first
+      class_category = ClassCategory.select(:id).where('name LIKE ?', "%#{hash[:class_category_name]}%").first
       class_category = ClassCategory.create(name: hash[:class_category_name].force_encoding("utf-8")) if class_category.blank?
       return class_category
     end

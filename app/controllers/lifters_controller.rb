@@ -11,10 +11,15 @@ class LiftersController < ApplicationController
   # GET /lifters/1.json
   def show
     @lifter
-    @gear_bps = @lifter.benchpress_record(true)
-    @bps = @lifter.benchpress_record(false)
+    @gear_bps = Benchpress.where("lifter_id = ?",@lifter.id)
+    #@lifter.benchpress_record(true)
+    @bps = [] 
+    #@lifter.benchpress_record(false)
     @pls = Powerlifting.where("lifter_id = ?",@lifter.id)
-    
+    p @gear_bps
+    p @bps
+
+
   end
 
   private
