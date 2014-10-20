@@ -3,3 +3,4 @@
 --fail-fast
 --order random
 --format doc
+-r power_assert

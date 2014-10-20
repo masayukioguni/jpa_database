@@ -1,7 +1,3 @@
-def record(value)
-  value.nil? ?  0 : value.to_f
-end
-
 ActiveAdmin.register Benchpress do
   permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
                 :championship_id, :first, :second, :third, :use_gear, :formula,

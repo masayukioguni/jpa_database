@@ -48,6 +48,7 @@ gem 'sqlite3-ruby'
 gem 'rack-google-analytics'
 
 group :development, :test do
+  gem 'rspec-power_assert'
   gem 'spring'
   gem 'guard'
   gem 'guard-rspec'
