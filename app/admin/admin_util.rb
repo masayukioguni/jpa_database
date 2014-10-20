@@ -3,31 +3,40 @@ class AdminUtil
     def record(value)
      value.nil? ?  0 : value.to_f 
     end
+  
+    def normalize(value)
+     value.force_encoding("utf-8").scrub('?')
+    end
+
 
     def lifter(hash)
-      name = hash[:name].force_encoding("utf-8").scrub('?')
+      name = normalize hash[:name]
+      gender = normalize hash[:gender]
       lifter = Lifter.where('name LIKE ?', "%#{name}%").first
       lifter = Lifter.create(name: name,
                              name_kana: "test",
-                             gender: hash[:gender].force_encoding("utf-8").scrub('?')) if lifter.blank?
+                             gender: gender.downcase) if lifter.blank?
       return lifter
     end
 
     def championship(hash)
-      championship = Championship.select(:id).where('name LIKE ?', "%#{hash[:championship_name]}%").first
-      championship = Championship.create(name: hash[:championship_name].force_encoding("utf-8")) if championship.blank? 
+      name = normalize hash[:name]
+      championship = Championship.select(:id).where('name LIKE ?', "%#{name}%").first
+      championship = Championship.create(name: name) if championship.blank? 
       return championship
     end
 
     def weight_category(hash)
-      weight_category = WeightCategory.select(:id).where('name LIKE ?', "%#{hash[:weight_category_name]}%").first
-      weight_category = WeightCategory.create(name: hash[:weight_category_name].force_encoding("utf-8")) if weight_category.blank? 
+      name = normalize hash[:name]
+      weight_category = WeightCategory.select(:id).where('name LIKE ?', "%#{name}%").first
+      weight_category = WeightCategory.create(name: name) if weight_category.blank? 
       return weight_category
     end
 
     def class_category(hash)
-      class_category = ClassCategory.select(:id).where('name LIKE ?', "%#{hash[:class_category_name]}%").first
-      class_category = ClassCategory.create(name: hash[:class_category_name].force_encoding("utf-8")) if class_category.blank?
+      name = normalize hash[:name]
+      class_category = ClassCategory.select(:id).where('name LIKE ?', "%#{name}%").first
+      class_category = ClassCategory.create(name: name) if class_category.blank?
       return class_category
     end
 
@@ -48,7 +57,7 @@ class AdminUtil
     end
 
     def formula(gender,weight,result)
-      if gender == 'male'
+      if gender.downcase == 'male'
         return Wilksformula.men_formula(weight,result)
       else
         return Wilksformula.women_formula(weight,result)
