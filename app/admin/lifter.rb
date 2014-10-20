@@ -7,7 +7,6 @@ ActiveAdmin.register Lifter do
   filter :gender
 
   active_admin_importable do |model, hash|
-    p hash
     model.create(name: hash[:name], 
                  name_kana: hash[:name_kana],
                  birthday: hash[:birthday],

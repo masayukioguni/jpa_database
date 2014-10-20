@@ -1,8 +1,8 @@
-name,weight,championship_name,weight_category_name,class_gategory_name,first,second,third,use_gear
-"小國 正之",66.0,"全日本","66kg","一般",100,-105,105,true
-"小國 正之",67.0,"","66kg","一般",,,,true
-"中山 久幸",64.10,"第25回 全日本ベンチプレス選手権大会","66kg","一般",235.0,-237.5,-240.0,true
-"中山sss 久幸",64.10,"第25回ss 全日本ベンチプレス選手権大会","6ss6kg","一般",235.0,-237.5,-240.0,true
-"中幸",64.10,"第25回ss 全日本ベンチプ大会","6skg","一般ddddd",235.0,-237.5,-240.0,true
+name,weight,championship_name,weight_category_name,class_category_name,first,second,third,use_gear,gender
+"小國 正之",66.0,"全日本","66kg","一般",100,-105,105,true,"male"
+"小國 正之",67.0,"","66kg","一般",,,,true,"female"
+"中山 久幸",64.10,"第25回 全日本ベンチプレス選手権大会","66kg","一般",235.0,-237.5,-240.0,true,"male"
+"中山sss 久幸",64.10,"第25回ss 全日本ベンチプレス選手権大会","6ss6kg","一般",235.0,-237.5,-240.0,true,"male"
+"中幸",64.10,"第25回ss 全日本ベンチプ大会","6skg","一般ddddd",235.0,-237.5,-240.0,true,"male"
 
 

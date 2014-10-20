@@ -13,9 +13,9 @@
 / Tab panes
 .tab-content
   #gear_benchpress.tab-pane.active 
-    = render 'benchpress', locals: {:bps => @gear_bps}
+    = render 'benchpress', :bps => @gear_bps
   #benchpress.tab-pane
-    = render 'benchpress', locals: {:bps => @bps}
+    = render 'benchpress', :bps => @bps
   #messages.tab-pane message
   #settings.tab-pane setting
 

@@ -1,3 +1,7 @@
+def record(value)
+  value.nil? ?  0 : value.to_f 
+end
+
 ActiveAdmin.register Benchpress do
   permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
                 :championship_id, :first, :second, :third, :use_gear, :formula,
@@ -15,7 +19,6 @@ ActiveAdmin.register Benchpress do
     column :third
     column :result
     column :formula
-    
     column :championship
     column :use_gear
     column :is_disqualified
@@ -23,48 +26,38 @@ ActiveAdmin.register Benchpress do
   end
 
   active_admin_importable do |model, hash|
-    lifter = Lifter.select(:id).where('name LIKE ?', "%#{hash[:name]}%").first
-    lifter = Lifter.create(name: hash[:name],name_kana: "test") if lifter.blank?
+    lifter = AdminUtil.lifter(hash[:name],hash[:gender])     
+    championship = AdminUtil.championship(hash[:championship_name])
+
+    next if AdminUtil.exist?(model,lifter.id,championship.id)
     
-    championship =  Championship.select(:id).where('name LIKE ?', "%#{hash[:championship_name]}%").first
-    championship = Championship.create(name: hash[:championship_name]) if championship.blank? 
+    weight_category =  AdminUtil.weight_category(hash[:weight_category_name])
+    class_category = AdminUtil.class_category(hash[:class_category_name])
+
+    first_record =  AdminUtil.record(hash[:first])
+    second_record = AdminUtil.record(hash[:second])
+    third_record = AdminUtil.record(hash[:third])
     
-    weight_category =  WeightCategory.select(:id).where('name LIKE ?', "%#{hash[:weight_category_name]}%").first
-    weight_category = WeightCategory.create(name: hash[:weight_category_name]) if weight_category.blank? 
+    result = AdminUtil.result(first_record,second_record,third_record)
 
-    class_category =  ClassCategory.select(:id).where('name LIKE ?', "%#{hash[:class_category_name]}%").first
-    class_category = ClassCategory.create(name: hash[:class_category_name]) if class_category.blank?
+    is_disqualified = AdminUtil.disqualified?(result)
 
-    count = model.where('lifter_id = ? AND championship_id = ? AND weight_category_id = ? AND class_category_id = ?',
-                        lifter.id,championship.id,weight_category.id,class_category.id).count
-    next unless count == 0
+    weight = AdminUtil.record(hash[:weight])    
 
-    first_record =  hash[:first].nil? ?  0 : hash[:first].to_f
-    second_record = hash[:second].nil? ?  0 : hash[:second].to_f
-    third_record = hash[:third].nil? ?  0 : hash[:third].to_f
-    
-    result = [first_record,second_record,third_record,0].max
-    is_disqualified = result == 0 ? true : false
-
-    formula = 0.0
-    weight = hash[:weight].nil? ?  0 : hash[:weight].to_f
-    if hash[:gender] == 'male'
-      formula = Wilksformula.men_formula(weight,result)
-    else
-      formula = Wilksformula.women_formula(weight,result)
-    end
+    formula = AdminUtil.formula(lifter.gender,weight,result)
 
     model.create(lifter_id: lifter.id, 
                  championship_id: championship.id,
                  class_category_id: class_category.id,
                  weight_category_id: weight_category.id,
                  weight: weight,
-                 first: hash[:first],
-                 second: hash[:second],
-                 third: hash[:third],
+                 first: first_record,
+                 second: second_record,
+                 third: third_record,
                  result: result,
                  formula: formula,
-                 use_gear: hash[:use_gear],
+                 use_gear: AdminUtil.use_gear?(hash[:use_gear]),
+                 rank: AdminUtil.rank(hash[:rank]),
                  is_disqualified: is_disqualified)
   end
 end
