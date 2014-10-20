@@ -26,13 +26,13 @@ ActiveAdmin.register Benchpress do
   end
 
   active_admin_importable do |model, hash|
-    lifter = AdminUtil.lifter(hash)     
-    championship = AdminUtil.championship(hash)
+    lifter = AdminUtil.lifter(hash[:name],hash[:gender])     
+    championship = AdminUtil.championship(hash[:championship_name])
 
     next if AdminUtil.exist?(model,lifter.id,championship.id)
     
-    weight_category =  AdminUtil.weight_category(hash)
-    class_category = AdminUtil.class_category(hash)
+    weight_category =  AdminUtil.weight_category(hash[:weight_category_name])
+    class_category = AdminUtil.class_category(hash[:class_category_name])
 
     first_record =  AdminUtil.record(hash[:first])
     second_record = AdminUtil.record(hash[:second])
@@ -57,6 +57,7 @@ ActiveAdmin.register Benchpress do
                  result: result,
                  formula: formula,
                  use_gear: AdminUtil.use_gear?(hash[:use_gear]),
+                 rank: AdminUtil.rank(hash[:rank]),
                  is_disqualified: is_disqualified)
   end
 end

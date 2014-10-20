@@ -12,10 +12,10 @@
     %a{"data-toggle" => "tab", :href => "#settings", :role => "tab"} Settings
 / Tab panes
 .tab-content
-  #benchpress.tab-pane
-    = render 'benchpress', :bps => @bps
   #gear_benchpress.tab-pane.active 
     = render 'benchpress', :bps => @gear_bps
+  #benchpress.tab-pane
+    = render 'benchpress', :bps => @bps
   #messages.tab-pane message
   #settings.tab-pane setting
 
