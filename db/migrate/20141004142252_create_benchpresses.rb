@@ -10,7 +10,7 @@ class CreateBenchpresses < ActiveRecord::Migration
       t.float :second
       t.float :third
       t.boolean :use_gear
-	  t.boolean :is_disqualified
+      t.boolean :is_disqualified
       t.timestamps
     end
   end

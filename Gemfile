@@ -22,11 +22,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-gem 'libv8','3.3.10.4'
-gem 'therubyracer','0.10.2'
+gem 'libv8', '3.3.10.4'
+gem 'therubyracer', '0.10.2'
 
-  
-gem "twitter-bootstrap-rails"
+gem 'twitter-bootstrap-rails'
 gem 'bootstrap-sass', '3.1.1'
 gem 'kaminari'
 gem 'http_accept_language'
@@ -45,7 +44,7 @@ gem 'dotenv-rails'
 gem 'dotenv-deployment'
 gem 'rack-mini-profiler', require: false
 gem 'activesupport'
-gem 'sqlite3-ruby' 
+gem 'sqlite3-ruby'
 gem 'rack-google-analytics'
 
 group :development, :test do
@@ -84,13 +83,10 @@ group :development, :test do
   gem 'capistrano-bundler'
   gem 'capistrano3-unicorn' # unicornを使っている場合のみ
   gem 'capistrano3-env', '~> 0.1.0'
-  gem 'coveralls', :require => false
-  gem "codeclimate-test-reporter", :require => false
+  gem 'coveralls', require: false
+  gem 'codeclimate-test-reporter', require: false
 
 end
-
-
-
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -103,4 +99,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-

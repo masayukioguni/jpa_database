@@ -1,14 +1,13 @@
 set :branch, 'master'
-set :rails_env, 'production' 
+set :rails_env, 'production'
 
-SERVER="deploy@#{ENV['JPA_DATABASE_SERVER']}"
+SERVER = "deploy@#{ENV['JPA_DATABASE_SERVER']}"
 
 role :app, SERVER
 role :web, SERVER
-role :db,  SERVER, :primary => true
+role :db,  SERVER, primary: true
 
 server ENV['JPA_DATABASE_SERVER'], user: 'deploy', roles: %w(web app db)
-
 
 # Custom SSH Options
 # ==================

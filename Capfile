@@ -10,4 +10,3 @@ require 'capistrano3/unicorn'
 require 'capistrano/env'
 
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
-

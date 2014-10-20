@@ -5,5 +5,4 @@ class Benchpress < ActiveRecord::Base
   belongs_to :class_category
 
   include JapaneseRecord
-
 end

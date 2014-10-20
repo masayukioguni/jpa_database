@@ -18,39 +18,38 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe LiftersController, :type => :controller do
+RSpec.describe LiftersController, type: :controller do
 
   # This should return the minimal set of attributes required to create a valid
   # Lifter. As you add validations to Lifter, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # LiftersController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all lifters as @lifters" do
-      lifter = FactoryGirl.create(:lifter,gender: "male")
+  describe 'GET index' do
+    it 'assigns all lifters as @lifters' do
+      lifter = FactoryGirl.create(:lifter, gender: 'male')
       get :index, {}, valid_session
       expect(assigns(:lifters)).to eq([lifter])
     end
   end
 
-  describe "GET show" do
-    it "assigns the requested lifter as @lifter" do
-      lifter = FactoryGirl.create(:lifter,gender: "female")
-      get :show, {:id => lifter.to_param}, valid_session
+  describe 'GET show' do
+    it 'assigns the requested lifter as @lifter' do
+      lifter = FactoryGirl.create(:lifter, gender: 'female')
+      get :show, { id: lifter.to_param }, valid_session
       expect(assigns(:lifter)).to eq(lifter)
     end
   end
-
 
 end

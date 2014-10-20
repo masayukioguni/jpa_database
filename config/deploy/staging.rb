@@ -1,7 +1,7 @@
 set :branch, 'master'
-set :rails_env, 'development' 
+set :rails_env, 'development'
 
-SERVER="deploy@#{ENV['JPA_DATABASE_SERVER_DEV']}"
+SERVER = "deploy@#{ENV['JPA_DATABASE_SERVER_DEV']}"
 
 role :app, SERVER
 role :web, SERVER
@@ -15,7 +15,6 @@ server ENV['JPA_DATABASE_SERVER_DEV'], user: 'deploy', roles: %w(web app db)
 #    auth_methods: %w(publickey)
 # }
 
-
 # Simple Role Syntax
 # ==================
 # Supports bulk-adding hosts to roles, the primary server in each group
@@ -26,7 +25,6 @@ server ENV['JPA_DATABASE_SERVER_DEV'], user: 'deploy', roles: %w(web app db)
 # role :web, %w{deploy@example.com}
 # role :db,  %w{deploy@example.com}
 
-
 # Extended Server Syntax
 # ======================
 # This can be used to drop a more detailed server definition into the
@@ -34,7 +32,6 @@ server ENV['JPA_DATABASE_SERVER_DEV'], user: 'deploy', roles: %w(web app db)
 # used to set extended properties on the server.
 
 # server 'example.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
-
 
 # Custom SSH Options
 # ==================

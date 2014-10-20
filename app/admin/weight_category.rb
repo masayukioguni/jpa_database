@@ -1,3 +1,3 @@
 ActiveAdmin.register WeightCategory do
-  permit_params :name,:min,:max
+  permit_params :name, :min, :max
 end

@@ -10,6 +10,6 @@ require 'rails_helper'
 #     end
 #   end
 # end
-RSpec.describe LiftersHelper, :type => :helper do
+RSpec.describe LiftersHelper, type: :helper do
   pending "add some examples to (or delete) #{__FILE__}"
 end
