@@ -5,7 +5,7 @@ end
 ActiveAdmin.register Benchpress do
   permit_params :lifter_id, :weight, :class_category_id, :wieght_category_id,
                 :championship_id, :first, :second, :third, :use_gear, :formula,
-                :is_disqualified
+                :is_disqualified, :rank
 
   index do
     selectable_column
