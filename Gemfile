@@ -22,11 +22,12 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
+gem 'libv8','3.3.10.4'
+gem 'therubyracer','0.10.2'
+
+  
 gem "twitter-bootstrap-rails"
 gem 'bootstrap-sass', '3.1.1'
-
-gem 'therubyracer'
-
 gem 'kaminari'
 gem 'http_accept_language'
 
