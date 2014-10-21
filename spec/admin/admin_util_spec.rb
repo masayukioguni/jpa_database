@@ -138,5 +138,4 @@ Rspec::PowerAssert.describe AdminUtil do
     end
   end
 
-
 end
