@@ -49,7 +49,7 @@ common: &default_settings
   # See https://newrelic.com/docs/site/renaming-applications for more details
   # on renaming your New Relic applications.
   #
-  app_name: My Application
+  app_name: JPADatabase
 
   # When "true", the agent collects performance data about your
   # application and reports this data to the New Relic service at
@@ -107,7 +107,7 @@ common: &default_settings
   # feature, change 'enabled' below to true.
   # See: https://newrelic.com/docs/ruby/audit-log
   audit_log:
-    enabled: false
+    enabled: true
 
   # Tells transaction tracer and error collector (when enabled)
   # whether or not to capture HTTP params.  When true, frameworks can
