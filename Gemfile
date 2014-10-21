@@ -46,6 +46,7 @@ gem 'rack-mini-profiler', require: false
 gem 'activesupport'
 gem 'sqlite3-ruby'
 gem 'rack-google-analytics'
+gem 'newrelic_rpm'
 
 group :development, :test do
   gem 'rspec-power_assert'
