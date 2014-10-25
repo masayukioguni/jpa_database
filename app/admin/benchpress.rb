@@ -14,6 +14,7 @@ ActiveAdmin.register Benchpress do
     column :second
     column :third
     column :result
+    column :rank
     column :formula
     column :championship
     column :use_gear
